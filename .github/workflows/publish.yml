@@ -17,7 +17,7 @@ concurrency:
 
 env:
   # The version of balzac used to build the site. Change it to upgrade.
-  BALZAC_REF: v0.1.0
+  BALZAC_REF: v0.1.1
 
 jobs:
   build:
@@ -25,15 +25,14 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: ocaml/setup-ocaml@v3
-        with:
-          ocaml-compiler: "5.5"
-
       - name: Install balzac
-        run: opam pin add --yes balzac "git+https://github.com/fr4nk-13/balzac.git#${BALZAC_REF}"
+        run: |
+          curl --fail --location --silent --show-error --output balzac \
+            "https://github.com/fr4nk-13/balzac/releases/download/${BALZAC_REF}/balzac-linux-x86_64"
+          chmod +x balzac
 
       - name: Build the site
-        run: opam exec -- balzac build site _site
+        run: ./balzac build site _site
 
       - uses: actions/upload-pages-artifact@v5
         with:
