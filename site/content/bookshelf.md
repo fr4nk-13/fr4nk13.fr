@@ -99,6 +99,8 @@ description: "Books I have read, the ones I'm reading, and those I would like to
   *Faust I et II* (French translation by Jean Malaplate)
 - **Perfume: The Story of a Murderer** — Patrick Süskind\
   *Le Parfum : Histoire d'un meurtrier*
+- **La Chanson de Roland** — Anonymous\
+  *The Song of Roland*
 
 ### Science fiction and fantasy
 
@@ -146,6 +148,8 @@ description: "Books I have read, the ones I'm reading, and those I would like to
 - **Discours de la servitude volontaire** — Étienne de La Boétie\
   *Discourse on Voluntary Servitude*
 - **Le Message des constructeurs de cathédrales : La symbolique des édifices** — Christian Jacq
+- **Five Lectures on Psycho-Analysis** — Sigmund Freud\
+  *Cinq leçons sur la psychanalyse*
 
 ### Science
 
