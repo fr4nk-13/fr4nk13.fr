@@ -1,7 +1,42 @@
-{% extends "page.html" %}
+{% extends "base.html" %}
 
-{% block back %}{{ base_url }}blog.html{% endblock %}
+{% block main %}
+<div class="wrap article-page">
+    <a class="button button-back" href="{{ base_url }}blog.html">
+        <span aria-hidden="true">&larr;</span> Back
+    </a>
 
-{% block meta %}
-<p class="article-meta"><time datetime="{{ date }}">{{ date }}</time></p>
+    <div class="article-layout">
+        <article class="article">
+            <header class="article-header">
+                <h1>{{ title }}</h1>
+                <p class="article-meta"><time datetime="{{ date }}">{{ date }}</time></p>
+                {% if tags %}
+                <p class="hashtags">
+                    <svg class="hashtags-icon" viewBox="0 0 20 20" aria-hidden="true">
+                        <path d="M3 3h6.5l7.5 7.5-6.5 6.5L3 9.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        <circle cx="6.75" cy="6.75" r="1.25" fill="currentColor"/>
+                    </svg>
+                    {% for tag in tags %}{% if tag != "post" %}<a href="{{ base_url }}tags.html#tag-{{ tag }}">#{{ tag }}</a>{% endif %}{% endfor %}
+                </p>
+                {% endif %}
+            </header>
+
+            <div class="prose">
+                {{ content }}
+            </div>
+        </article>
+
+        <aside class="toc" id="toc" hidden>
+            <h2 id="toc-title">On this page</h2>
+            <nav aria-labelledby="toc-title">
+                <ol></ol>
+            </nav>
+        </aside>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ base_url }}toc.js" defer></script>
 {% endblock %}

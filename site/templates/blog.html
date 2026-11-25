@@ -1,35 +1,22 @@
-{% extends "base.html" %}
+{% extends "page.html" %}
 
-{% block main %}
-<header class="hero">
-    <div class="wrap">
-        <h1>{{ title }}</h1>
-        {% if description %}
-        <p class="hero-text">{{ description }}</p>
-        {% endif %}
-    </div>
-</header>
-
-<section class="sheet" aria-label="List of posts">
-    <div class="wrap">
-        <ul class="entries entries-dated">
-            {% for page in pages | sort(attribute="date") | reverse %}
-            {% if page.tags and "post" in page.tags %}
-            <li class="entry">
-                <time class="entry-date" datetime="{{ page.date }}">{{ page.date }}</time>
-                <div class="entry-body">
-                    <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
-                    {% if page.description %}
-                    <p>{{ page.description }}</p>
-                    {% endif %}
-                    <p class="hashtags">
-                        {% for tag in page.tags %}{% if tag != "post" %}<a href="{{ base_url }}tags.html#tag-{{ tag }}">#{{ tag }}</a>{% endif %}{% endfor %}
-                    </p>
-                </div>
-            </li>
+{% block sheet %}
+<ul class="entries entries-dated">
+    {% for page in pages | sort(attribute="date") | reverse %}
+    {% if page.tags and "post" in page.tags %}
+    <li class="entry">
+        <time class="entry-date" datetime="{{ page.date }}">{{ page.date }}</time>
+        <div class="entry-body">
+            <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+            {% if page.description %}
+            <p>{{ page.description }}</p>
             {% endif %}
-            {% endfor %}
-        </ul>
-    </div>
-</section>
+            <p class="hashtags">
+                {% for tag in page.tags %}{% if tag != "post" %}<a href="{{ base_url }}tags.html#tag-{{ tag }}">#{{ tag }}</a>{% endif %}{% endfor %}
+            </p>
+        </div>
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
 {% endblock %}
