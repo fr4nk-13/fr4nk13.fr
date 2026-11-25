@@ -161,3 +161,10 @@ description: "Books I have read, the ones I'm reading, and those I would like to
 ### Programming
 
 - **Game Programming Patterns** — Robert Nystrom
+- **Programming in Lua** — Roberto Ierusalimschy
+- **Développement d'applications avec Objective Caml** — Emmanuel Chailloux, Pascal Manoury and Bruno Pagano\
+  *Developing Applications with Objective Caml*
+- **Python Cookbook: Recipes for Mastering Python 3** — David Beazley and Brian K. Jones
+- **The C++ Programming Language** — Bjarne Stroustrup\
+  *Le Langage C++*
+- **The Go Programming Language** — Alan A. A. Donovan and Brian W. Kernighan
