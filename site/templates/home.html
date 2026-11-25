@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block head_title %}{{ title }}{% endblock %}
+
+{% block main %}
+<header class="hero hero-home">
+    <div class="wrap">
+        <h1>{{ title }}</h1>
+        {% if description %}
+        <p class="hero-kicker">{{ description }}</p>
+        {% endif %}
+        <div class="hero-text">
+            {{ content }}
+        </div>
+        <p class="hero-actions">
+            <a class="button button-primary" href="{{ base_url }}blog.html">
+                Read the blog <span aria-hidden="true">&rarr;</span>
+            </a>
+        </p>
+    </div>
+</header>
+
+<section class="sheet" aria-labelledby="latest-title">
+    <div class="wrap">
+        <h2 class="sheet-title" id="latest-title">Latest posts</h2>
+        <ul class="entries entries-dated">
+            {# Only the three most recent posts: the blog page has them all. #}
+            {% set shown = namespace(count=0) %}
+            {% for page in pages | sort(attribute="date") | reverse %}
+            {% if page.tags and "post" in page.tags and shown.count < 3 %}
+            {% set shown.count = shown.count + 1 %}
+            <li class="entry">
+                <time class="entry-date" datetime="{{ page.date }}">{{ page.date }}</time>
+                <div class="entry-body">
+                    <h3><a href="{{ page.url }}">{{ page.title }}</a></h3>
+                    {% if page.description %}
+                    <p>{{ page.description }}</p>
+                    {% endif %}
+                </div>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        <p class="sheet-more">
+            <a class="button" href="{{ base_url }}blog.html">
+                All posts <span aria-hidden="true">&rarr;</span>
+            </a>
+        </p>
+    </div>
+</section>
+{% endblock %}

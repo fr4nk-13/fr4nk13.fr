@@ -1,0 +1,779 @@
+/* fr4nk13.fr.
+   A tinted band at the top, a lighter sheet for lists, bold sans headings.
+   Dark by default; the header button switches to the light theme. */
+
+:root {
+  color-scheme: dark;
+
+  --band: #110d26;
+  --sheet: #191433;
+  --ink: #ecebfa;
+  --ink-soft: #b6b0dc;
+  --line: #37305f;
+  --primary: #a99cf5;
+  --on-primary: #110d26;
+  --accent: #f5b963;
+  --code: #1d183a;
+  --code-head: #29224d;
+  --note: #1f1940;
+
+  --syn-keyword: #a99cf5;
+  --syn-string: #f5b963;
+  --syn-value: #6fd0dc;
+  --syn-name: #f29acb;
+
+  --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas,
+    monospace;
+
+  --page: 70rem;
+  --gutter: 1.5rem;
+  --wave: 3rem;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --band: #e9e6f7;
+  --sheet: #f7f6fd;
+  --ink: #1b1440;
+  --ink-soft: #4b4380;
+  --line: #c5bfe6;
+  --primary: #4a3aa8;
+  --on-primary: #f7f6fd;
+  --accent: #a8540a;
+  --code: #f1effb;
+  --code-head: #dcd8f2;
+  --note: #e0dcf5;
+
+  --syn-keyword: #4a3aa8;
+  --syn-string: #a8540a;
+  --syn-value: #0b6b78;
+  --syn-name: #9b2671;
+}
+
+/* Base */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 1.5rem;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--band);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 1.5rem + 1.6vw, 2.25rem);
+  font-weight: 750;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--page);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: -4rem;
+  padding: 0.4rem 0.8rem;
+  background: var(--ink);
+  color: var(--band);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+/* Header */
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.5rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.brand-nib {
+  fill: var(--accent);
+}
+
+.brand-stem {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-nav a {
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.brand:hover {
+  color: var(--primary);
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  background: var(--sheet);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.theme-toggle[hidden] {
+  display: none;
+}
+
+.theme-toggle svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Buttons */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  background: var(--sheet);
+  color: var(--ink);
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.button-primary {
+  padding: 0.6rem 1.3rem;
+  background: var(--primary);
+  color: var(--on-primary);
+  border-radius: 999px;
+  font-size: 1rem;
+}
+
+.button-primary:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--band);
+}
+
+/* Hero band and sheet (home and list pages) */
+
+.site-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  padding-block: 1.25rem calc(var(--wave) + 1.25rem);
+}
+
+.hero-home h1 {
+  font-size: clamp(2.2rem, 1.5rem + 3vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.hero-kicker {
+  margin: 0.15rem 0 0;
+  color: var(--accent);
+  font-size: 1.125rem;
+  font-weight: 650;
+}
+
+.hero-text {
+  max-width: 38rem;
+  margin-top: 1rem;
+  color: var(--ink-soft);
+  font-size: 1.125rem;
+}
+
+p.hero-text {
+  margin-bottom: 0;
+}
+
+.hero-text p {
+  margin: 0 0 0.75rem;
+}
+
+.hero-actions {
+  margin: 1.5rem 0 0;
+}
+
+.sheet {
+  position: relative;
+  flex: 1;
+  padding-block: 0.5rem 2rem;
+  background: var(--sheet);
+}
+
+/* The wavy edge between band and sheet. */
+.sheet::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 calc(100% - 1px) 0;
+  height: var(--wave);
+  background: var(--sheet);
+  --shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cpath d='M0 20C200 4 420 2 700 24s520 26 740-4v28H0z'/%3E%3C/svg%3E");
+  -webkit-mask: var(--shape) center / 100% 100% no-repeat;
+  mask: var(--shape) center / 100% 100% no-repeat;
+}
+
+.sheet-title {
+  margin-bottom: 0.75rem;
+  font-size: 1.75rem;
+  font-weight: 750;
+}
+
+.sheet-more {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1.75rem 0 0;
+}
+
+/* Lists of articles */
+
+.entries {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.15rem 1.75rem;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 40rem) {
+  .entry {
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 40rem) {
+  .entries-dated .entry {
+    grid-template-columns: 5.25rem minmax(0, 1fr);
+  }
+
+  .entries-plain .entry {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.entry-num,
+.entry-date {
+  padding-top: 0.25rem;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.entry-body h2,
+.entry-body h3 {
+  font-size: 1.25rem;
+  font-weight: 650;
+}
+
+.entry-body :is(h2, h3) a {
+  text-decoration: none;
+}
+
+.entry-body :is(h2, h3) a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+.entry-body p {
+  margin: 0.3rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+}
+
+.hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.1rem 0.6rem;
+  margin: 0.3rem 0 0;
+  color: var(--accent);
+  font-size: 0.9375rem;
+}
+
+.entry-body .hashtags {
+  color: var(--accent);
+}
+
+.hashtags a {
+  text-decoration: none;
+}
+
+.hashtags a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+/* Tags page */
+
+.tag-index {
+  gap: 0.25rem 1rem;
+  margin: 0.5rem 0 0;
+  font-size: 1.0625rem;
+  font-weight: 650;
+}
+
+.tag-section {
+  margin-top: 2.5rem;
+  scroll-margin-top: 1.5rem;
+}
+
+.tag-title {
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--line);
+  font-size: 1.5rem;
+  font-weight: 750;
+}
+
+.tag-section:target .tag-title {
+  border-bottom-color: var(--accent);
+  color: var(--accent);
+}
+
+.hashtags-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+/* Article page */
+
+.article-page {
+  padding-block: 1rem 4rem;
+}
+
+.article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 46rem);
+  gap: 2.5rem;
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 64rem) {
+  .article-layout {
+    grid-template-columns: minmax(0, 46rem) minmax(0, 1fr);
+  }
+}
+
+.article-meta {
+  margin: 0.6rem 0 0;
+  color: var(--ink-soft);
+}
+
+.article-header .hashtags {
+  margin-top: 0.4rem;
+  font-size: 1rem;
+}
+
+/* Table of contents */
+
+.toc {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .toc:not([hidden]) {
+    display: block;
+    position: sticky;
+    top: 1.5rem;
+    align-self: start;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    padding-left: 1rem;
+    border-left: 1px solid var(--line);
+  }
+}
+
+.toc h2 {
+  margin-bottom: 0.9rem;
+  font-size: 1.2rem;
+  font-weight: 650;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.toc li {
+  margin-block: 0.5rem;
+  line-height: 1.45;
+}
+
+.toc .toc-sub {
+  padding-left: 0.6rem;
+}
+
+.toc a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.toc a:hover,
+.toc a[aria-current="true"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+/* Prose: the converted Markdown */
+
+.prose {
+  margin-top: 1.75rem;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose pre,
+.prose blockquote,
+.prose figure {
+  margin-block: 1rem;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  position: relative;
+}
+
+.prose h2 {
+  margin-block: 2.75rem 1rem;
+  font-size: 1.75rem;
+  font-weight: 750;
+}
+
+.prose h3 {
+  margin-block: 2rem 0.75rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.prose h4 {
+  margin-block: 1.5rem 0.5rem;
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+/* Cmarkit puts an empty link in each heading: show it as a mark on hover. */
+.prose .anchor {
+  position: absolute;
+  right: 100%;
+  padding-right: 0.35rem;
+  color: var(--primary);
+  font-weight: 400;
+  text-decoration: none;
+  opacity: 0;
+}
+
+.prose .anchor::before {
+  content: "#";
+}
+
+.prose :is(h2, h3, h4):hover .anchor,
+.prose .anchor:focus-visible {
+  opacity: 1;
+}
+
+.prose a:not(.anchor) {
+  font-weight: 650;
+  text-decoration-color: var(--primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+.prose a:not(.anchor):hover {
+  color: var(--primary);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4rem;
+}
+
+.prose li {
+  margin-block: 0.3rem;
+}
+
+.prose li::marker {
+  color: var(--primary);
+}
+
+/* Quotes are shown as notes. */
+.prose blockquote {
+  margin-inline: 0;
+  padding: 1rem 1.25rem 1rem 1rem;
+  background: var(--note);
+  border-left: 0.6rem solid var(--primary);
+  border-radius: 6px;
+}
+
+.prose blockquote > :first-child {
+  margin-top: 0;
+}
+
+.prose blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.prose code {
+  padding: 0.1em 0.35em;
+  background: var(--code-head);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+}
+
+.prose pre {
+  overflow-x: auto;
+  background: var(--code);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  tab-size: 2;
+}
+
+.prose pre code {
+  display: block;
+  width: max-content;
+  min-width: 100%;
+  padding: 1rem;
+  background: none;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+/* The language name, set by site.js. */
+.prose pre[data-lang]::before {
+  content: attr(data-lang);
+  display: block;
+  position: sticky;
+  left: 0;
+  padding: 0.45rem 1rem;
+  background: var(--code-head);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+/* Syntax colours, for the classes highlight.js puts on the tokens. */
+
+.hljs-comment,
+.hljs-quote {
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-type,
+.hljs-meta {
+  color: var(--syn-keyword);
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition {
+  color: var(--syn-string);
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-variable,
+.hljs-template-variable {
+  color: var(--syn-value);
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-name,
+.hljs-title,
+.hljs-section,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-deletion {
+  color: var(--syn-name);
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: 700;
+}
+
+/* Cmarkit wraps tables in a region, which is what scrolls. */
+.prose div[role="region"] {
+  margin-block: 1.25rem;
+  overflow-x: auto;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.prose th,
+.prose td {
+  padding: 0.55rem 1rem 0.55rem 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  border-bottom-width: 2px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.prose hr {
+  margin-block: 2.5rem;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+/* Footer */
+
+.site-footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 1.5rem 2rem;
+  color: var(--ink-soft);
+  font-size: 0.875rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  vertical-align: bottom;
+  font-weight: 700;
+}
+
+.footer-brand .brand-mark {
+  width: 1.125rem;
+  height: 1.125rem;
+}

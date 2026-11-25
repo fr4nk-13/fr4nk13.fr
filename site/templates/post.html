@@ -1,0 +1,7 @@
+{% extends "page.html" %}
+
+{% block back %}{{ base_url }}blog.html{% endblock %}
+
+{% block meta %}
+<p class="article-meta"><time datetime="{{ date }}">{{ date }}</time></p>
+{% endblock %}

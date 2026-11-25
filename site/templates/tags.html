@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block main %}
+{# Collect the tags of every page, once each, in alphabetical order. #}
+{% set found = namespace(tags=[]) %}
+{% for page in pages %}{% for tag in page.tags %}{% set found.tags = found.tags + [tag] %}{% endfor %}{% endfor %}
+{% set tags = found.tags | unique | sort %}
+
+<header class="hero">
+    <div class="wrap">
+        <h1>{{ title }}</h1>
+        {% if description %}
+        <p class="hero-text">{{ description }}</p>
+        {% endif %}
+    </div>
+</header>
+
+<section class="sheet" aria-label="Pages by tag">
+    <div class="wrap">
+        <p class="hashtags tag-index">
+            {% for tag in tags %}{% if tag != "post" %}<a href="#tag-{{ tag }}">#{{ tag }}</a>{% endif %}{% endfor %}
+        </p>
+
+        {% for tag in tags %}
+        {% if tag != "post" %}
+        <section class="tag-section" id="tag-{{ tag }}">
+            <h2 class="tag-title">#{{ tag }}</h2>
+            <ul class="entries entries-plain">
+                {% for page in pages | sort(attribute="title") %}
+                {% if page.tags and tag in page.tags %}
+                <li class="entry">
+                    <div class="entry-body">
+                        <h3><a href="{{ page.url }}">{{ page.title }}</a></h3>
+                    </div>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
