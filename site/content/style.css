@@ -785,3 +785,21 @@ p.hero-text {
   width: 1.125rem;
   height: 1.125rem;
 }
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.footer-feed {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.footer-feed svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  color: var(--accent);
+}
