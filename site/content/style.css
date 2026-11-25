@@ -151,6 +151,14 @@ h1 {
   height: 1.75rem;
 }
 
+.brand-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--primary);
+  object-fit: cover;
+}
+
 .brand-nib {
   fill: var(--accent);
 }
