@@ -156,6 +156,8 @@ description: "Books I have read, the ones I'm reading, and those I would like to
 - **Souvenirs entomologiques : Études sur l'instinct et les mœurs des insectes, I** — Jean-Henri Fabre
 - **Souvenirs entomologiques : Études sur l'instinct et les mœurs des insectes, II** — Jean-Henri Fabre
 - **Souvenirs entomologiques : Études sur l'instinct et les mœurs des insectes, III** — Jean-Henri Fabre
+- **The Grand Design** — Stephen Hawking and Leonard Mlodinow\
+  *Y a-t-il un grand architecte dans l'Univers ?*
 
 ### Self-help
 
