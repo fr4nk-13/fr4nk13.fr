@@ -101,6 +101,38 @@ description: "Books I have read, the ones I'm reading, and those I would like to
   *Le Parfum : Histoire d'un meurtrier*
 - **La Chanson de Roland** — Anonymous\
   *The Song of Roland*
+- **L'Avare** — Molière\
+  *The Miser*
+- **Le Tartuffe, ou l'Imposteur** — Molière\
+  *Tartuffe, or The Impostor*
+- **Le Misanthrope, ou l'Atrabilaire amoureux** — Molière\
+  *The Misanthrope, or The Cantankerous Lover*
+- **Les Fourberies de Scapin** — Molière\
+  *Scapin the Schemer*
+- **Le Malade imaginaire** — Molière\
+  *The Imaginary Invalid*
+- **L'Ingénu** — Voltaire\
+  *L'Ingénu*
+- **Candide, ou l'Optimisme** — Voltaire\
+  *Candide, or Optimism*
+- **Zadig, ou la Destinée** — Voltaire\
+  *Zadig, or Destiny*
+- **Le Dernier Jour d'un condamné** — Victor Hugo\
+  *The Last Day of a Condemned Man*
+- **Les Contemplations** — Victor Hugo\
+  *The Contemplations*
+- **Illusions perdues** — Honoré de Balzac\
+  *Lost Illusions*
+- **Vendredi ou la Vie sauvage** — Michel Tournier\
+  *Friday and Robinson: Life on Speranza Island*
+- **Cyrano de Bergerac** — Edmond Rostand\
+  *Cyrano de Bergerac*
+- **Pierre et Jean** — Guy de Maupassant\
+  *Pierre and Jean*
+- **Les Fleurs du mal** — Charles Baudelaire\
+  *The Flowers of Evil*
+- **L'Étranger** — Albert Camus\
+  *The Stranger*
 
 ### Science fiction and fantasy
 
@@ -117,6 +149,8 @@ description: "Books I have read, the ones I'm reading, and those I would like to
   *1984*
 - **The Well at the World's End** — William Morris\
   *La Source au bout du monde*
+- **Brave New World** — Aldous Huxley\
+  *Le Meilleur des mondes*
 
 ### Thrillers
 
@@ -150,6 +184,8 @@ description: "Books I have read, the ones I'm reading, and those I would like to
 - **Le Message des constructeurs de cathédrales : La symbolique des édifices** — Christian Jacq
 - **Five Lectures on Psycho-Analysis** — Sigmund Freud\
   *Cinq leçons sur la psychanalyse*
+- **Discours de la méthode : Pour bien conduire sa raison, et chercher la vérité dans les sciences** — René Descartes\
+  *Discourse on the Method of Rightly Conducting One's Reason and of Seeking Truth in the Sciences*
 
 ### Science
 
